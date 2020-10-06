@@ -1,0 +1,85 @@
+-- Lab 6
+-- Să se obţină codurile salariaţilor ataşaţi tuturor proiectelor pentru care s-a alocat un buget mai mic decat 10000. (la care nu a lucrat angajatul)
+
+SELECT  from projects
+where budget = 10000;
+
+-- e gresit, afiseaza angajati care au lucrat cel putin la un astfel de proiect, dar NU la TOATE
+select employee_id 
+from employees
+where employee_id in (
+    select employee_id from works_on
+    where project_id in (
+                select project_id 
+                from projects
+                where budget = 10000
+                )
+    );
+
+
+select employee_id 
+from employees e
+where exists (
+    select employee_id from works_on
+    where project_id in (
+                select project_id 
+                from projects
+                where budget = 10000
+                )
+    and employee_id = e.employee_id
+    );
+
+
+--angajati care nu au lucrat la proiect cu buget mai mic de 10000
+select employee_id 
+from employees e
+where not exists (
+    select employee_id from works_on
+    where project_id in (
+                select project_id 
+                from projects
+                where budget = 10000
+                )
+    and employee_id = e.employee_id
+    );
+    
+    
+select distinct employee_id
+from works_on w 
+where not exists ( proiecte cu un buget mai mic decat 10000 la care nu a lucrat angajatul
+        select 'x' from projects p
+        where budget = 10000
+        --la care angajatul nu a lucrat
+        and not exists ( select 'x' from works_on w1
+                          where w1.employee_id = w.employee_id
+                          and w1.project_id = p.project_id
+                          )
+        );
+        
+ 
+        
+--nr proiecte care respecta conditia        
+select count() 
+from projects 
+where budget = 10000; 
+
+
+select w.employee_id, count()
+from works_on w 
+join projects p on (p.project_id = w.project_id)
+where p.budget = 10000
+group by w.employee_id
+order by 1;
+
+
+select employee_id, last_name, first_name
+from employees
+where employee_id in (
+        select w.employee_id
+        from works_on w 
+        join projects p on (p.project_id = w.project_id)
+        where p.budget = 10000
+        group by w.employee_id
+        having count() = (select count()
+                          from projects
+                          where budget = 10000));

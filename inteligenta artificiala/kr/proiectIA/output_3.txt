@@ -1,0 +1,4 @@
+------------------ Concluzie -----------------------
+Pentru fisierul 232_Lungu_Andrei_Lab6_Pb4_input_3.txt drumul de cost minim este:
+luiza > simona v razvan v andrei >> oana 
+Algoritmul a durat: 1 milisecunde

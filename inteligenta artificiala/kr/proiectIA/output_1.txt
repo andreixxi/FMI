@@ -1,0 +1,4 @@
+------------------ Concluzie -----------------------
+Pentru fisierul 232_Lungu_Andrei_Lab6_Pb4_input_1.txt drumul de cost minim este:
+ionel > alina v diana v costin v simona v razvan v andrei >> oana ^ radu > patricia v victor v nicoleta >> maria > gabi ^ dorel ^ elena < gigel ^ tamara > dragos 
+Algoritmul a durat: 2 milisecunde

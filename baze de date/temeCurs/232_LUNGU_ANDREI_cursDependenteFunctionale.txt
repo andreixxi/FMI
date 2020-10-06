@@ -1,0 +1,21 @@
+232, Lungu Andrei (tema lasata la un curs de pe youtube)
+
+x -> x (triviala)
+x --/--> y
+x -> z
+x --/--> t
+
+y --/--> x
+y -> y (triviala)
+y --/--> z
+y --/--> t
+
+z --/--> x
+z --/--> y
+z -> z (triviala)
+z --/--> t
+
+t --/--> x
+t -> y
+t --/--> z
+t -> t (triviala)

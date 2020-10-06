@@ -1,0 +1,21 @@
+Să se selecteze numele si prenumele pentru
+-angajatii din departamentul 40, al caror manageri au salariul fix de 2 ori mai mare decat al lor
+sau
+-angajatii din departamentul 150 care au manageri
+
+select e.last_name, e.first_name
+from employees e
+inner join employees e2
+on e.manager_id = e2.employee_id
+where (
+      e.department_id = 40 and e2.salary = 2 * e.salary
+      )
+union
+select last_name, first_name
+from employees
+where department_id = 150 and manager_id is not null;
+
+
+primul arbore nu prea este eficient pentru ca se face join pentru a gasi managerul fiecarui angajat deci nu doar al celor din departamentul 40  
+
+al doilea este mai bun deoarece proiectiile se fac cat mai devreme pentru a reduce dimensiunea datelor, si selectiile se fac devreme si join ul se aplica doar pentru angajatii necesari

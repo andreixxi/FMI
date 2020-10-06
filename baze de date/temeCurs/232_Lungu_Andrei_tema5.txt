@@ -1,0 +1,75 @@
+Fie tabelele urm.
+Se cere sa se cumpere si un telefon si un laptop, astfel incat pretul mobilului sa fie mai mic decat pretul laptopului.
+
+Mobile
+----------------
+model   | price
+----------------
+nokia   | 10k
+samsung | 20k
+iphone  | 50k
+
+dupa map 
+    |
+    v
+
+key  |   value
+---------------------------
+10k  | (mobile, nokia, 10k)
+20k  | (mobile, samsung, 20k)
+50k  | (mobile, iphone, 50k)
+
+------------------------------------------
+
+Laptop
+----------------
+model   | price
+----------------
+dell    | 30k
+acer    | 20k
+asus    | 10k
+
+dupa map
+    |
+    v
+
+key  | value
+--------------------------
+30k  | (laptop, 30k, dell)
+20k  | (laptop, 20k, acer)
+10k  | (laptop, 10k, asus)
+
+
+
+-----------
+shuffle
+------------
+key  |   value 
+----------------
+10k  | (laptop, 10k, asus)
+10k  | (mobile, nokia, 10k)
+20k  | (laptop, 20k, acer)
+20k  | (mobile, samsung, 20k)
+30k  | (laptop, 30k, dell)
+50k  | (mobile, iphone, 50k)
+
+
+    | reduce
+    v
+
+key   | value 
+--------------
+10k  | [(laptop, 10k, asus),
+     | (mobile, nokia, 10k)]
+20k  | [(laptop, 20k, acer),
+       (mobile, samsung, 20k)]
+30k  | (laptop, 30k, dell)
+50k  | (mobile, iphone, 50k)
+
+ 
+Solutie:
+mobile model | mobile price | laptop model | laptop price
+---------------------------------------------------------
+samsung      |    20k       |    dell      |     30k
+nokia        |    10k       |    dell      |     30k
+nokia        |    10k       |    acer      |     20k

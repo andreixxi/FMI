@@ -1,0 +1,81 @@
+Modelul este in NF2..
+De exemplu, pt relatia hospitalised_patient (imaginea cu tabel)(IDpat, name, sex, contactNo, Idroom,roomtype) toate atributele sunt o singura valoare(1NF).
+Exsita urm dependente functionale:
+1. atributul roomtype este dependent de atr idroom(idroom->roomtype)
+2. atr name este dep de atr idpatient(idpat -> name)
+
+Daca pacientul 2 pleaca din spital si datele ii sunt sterse, pierdem toata informatia despre camera cu idul 1. Astfel, trebuie sa folosim 2 tabele separate: patient si room (cu datele din modelul trimis la tema1). Acolo, daca un pacient este externat/ sters din baza de date, nu pierdem informatia despre camera.
++------------------------------------------------------------+
+|                    hospitalised patient                    |
++============+======+=====+============+=========+===========+
+| patient_id | name | sex | contact_no | room_id | room_type |
++------------+------+-----+------------+---------+-----------+
+| 1          | n1   | m   | 000000     | 2       | t1        |
++------------+------+-----+------------+---------+-----------+
+| 2          | n2   | f   | 1111       | 1       | t2        |
++------------+------+-----+------------+---------+-----------+
+| 3          | n3   | r   | 123132     | 1       | t2        |
++------------+------+-----+------------+---------+-----------+
+
+| dupa normalizare 2NF
+v
+
++--------------------------------------+
+|                patient               |
++============+======+=====+============+
+| patient_id | name | sex | contact_no |
++------------+------+-----+------------+
+| 1          | n1   | m   | 000000     |
++------------+------+-----+------------+
+| 2          | n2   | f   | 1111       |
++------------+------+-----+------------+
+| 3          | n3   | r   | 123132     |
++------------+------+-----+------------+
+
++---------------------+
+| room                |
++=========+===========+
+| id_room | room_type |
++---------+-----------+
+| 2       | t1        |
++---------+-----------+
+| 1       | t2        |
++---------+-----------+
+| 1       | t2        |
++---------+-----------+
+
+
+
+
+
+
+Presupunem ca un doctor foloseste relatia urm:
+Doctor_schedule (idD, name, salary, email, idPatient, namePatient)
+atributul idD este cheia de identificare, restul sunt in 1NF. Tabelul este in 2NF.
+Exista urm dependente:
+1. name, salary, email, idPatient sunt dependente functional pe idD (idD -> name, salary, email, idPatient)
+2. namePatient este dependent functional pe idPatient (idPatient -> namePatient)
+
++----------------------------------------------------------------------+
+|                            doctor schedule                           |
++-----------+-------------+--------+-------+------------+--------------+
+| id_doctor | name_doctor | salary | email | id_patient | name_patient |
++-----------+-------------+--------+-------+------------+--------------+
+
+| dupa normalizare 3NF
+v
+
++------------------------------------------+
+|                  doctor                  |
++-----------+-------------+--------+-------+
+| id_doctor | name_doctor | salary | email |
++-----------+-------------+--------+-------+
+
+
++---------------------------------+
+|             patient             |
++------------+--------------+--+--+
+| id_patient | name_patient |  |  |
++------------+--------------+--+--+
+
+Tabelul din exemplu este in 2Nf, dar exista o dependendenta intre id_patient si name_patient, pt ca id_patient nu este cheia primara in relatie. Pt a-l face in 3NF este nevoie sa punem numele pacientului intr-un tabel separat impreuna cu idul corespunzator pt a-l identifica.

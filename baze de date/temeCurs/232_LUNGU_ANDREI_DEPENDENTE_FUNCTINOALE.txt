@@ -1,0 +1,14 @@
+dependente functionale in ER pt spital facut de mine
+
+
+attribute (patient's) name is functionally dependent on attribute id
+it can be represented as: id -> name
+
+attribute room_type is functionally dependent on attribute room_id
+it can be represented as: room_id -> room_type
+
+attribute salary is functionally dependent on attribute emp_id
+it can be represented as: emp_id -> salary
+
+attribute appointment is functionally dependent on attribute record_id
+it can be represented as: record_id -> appointment 

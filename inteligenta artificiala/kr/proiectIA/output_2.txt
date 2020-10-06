@@ -1,0 +1,3 @@
+------------------ Concluzie -----------------------
+Pentru fisierul 232_Lungu_Andrei_Lab6_Pb4_input_2.txt starea initiala este si finala.
+Algoritmul a durat: 1 milisecunde
