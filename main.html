@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Korean TV Series</title>
+    <base href="file://C:/Users/andrei/Desktop/tehniciweb/">
+    <base href= "http://localhost:8080"/>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <style>
+        ul {
+            list-style-type: none;
+            font-size: 15px;
+            font-family: "comic sans ms";
+        }
+        
+        #myimg {
+            width: 40%;
+            height: auto;
+            position: relative;
+            left: 48px;
+        }
+        
+        #div1 {
+            width: 500px;
+            height: 270px;
+            padding: 10px;
+            border: 10px solid #aaaaaa;
+        }
+        
+        #img2 {
+            width: 800px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="myTitle" class="title" onclick="toggleClass(this)">Korean TV Series</h1>
+    </header>
+
+    <ul>
+        <li>Children of nobody</li>
+        <li>Moon Lovers: Scarlet Heart Ryeo</li>
+        <li>My father is strange</li>
+    </ul>
+
+    <div class="container-flex">
+        <img src="images/4.jpg" alt="wrong path" class="rotateimage1">
+        <img src="images/5.jpg" alt="wrong path" class="rotateimage2">
+
+        <figure class="container-item">
+            <img src="images/1/image2.jpg" alt="wrong path" class="mySlides1">
+            <img src="images/1/image3.jpg" alt="wrong path" class="mySlides1">
+            <img src="images/1/image6.jpg" alt="wrong path" class="mySlides1">
+            <figcaption id="caption1"><a href="proiect1.html" target="blank">Watch Children of nobody</a></figcaption>
+        </figure>
+
+        <figure class="container-item">
+            <img src="images/2/img2.jpg" alt="wrong path" class="mySlides2">
+            <img src="images/2/img3.jpg" alt="wrong path" class="mySlides2">
+            <img src="images/2/img5.jpg" alt="wrong path" class="mySlides2">
+            <figcaption id="caption2"><a href="proiect2.html" target="blank">Watch Moon Lovers: Scarlet Heart Ryeo</a></figcaption>
+        </figure>
+
+        <figure class="container-item">
+            <img src="images/3/img.jpg" alt="wrong path" class="mySlides3">
+            <img src="images/3/gallery/img1.jpg" alt="wrong path" class="mySlides3">
+            <img src="images/3/img2.jpg" alt="wrong path" class="mySlides3">
+            <img src="images/3/img32.jpg" alt="wrong path" class="mySlides3">
+            <figcaption id="caption3"><a href="proiect3.html" target="blank">Watch My father is strange</a></figcaption>
+        </figure>
+
+    </div>
+
+    <p>Do you want to watch one?
+        <br>
+        <input type="text" name="text" id="myInput">
+    </p>
+    <input type="button" value="Answer" onclick="getInputValue()">
+    <br>
+    <div id="div1" class="buttons">
+        <p>What do you want to watch?</p>
+        <input type="radio" name="kdrama" value="Children of nobody"> Children of nobody
+        <br>
+        <input type="radio" name="kdrama" value="Moon Lovers: Scarlet Heart Ryeo"> Moon Lovers: Scarlet Heart Ryeo
+        <br>
+        <input type="radio" name="kdrama" value="My father is strange"> My father is strange
+        <br>
+        <p>Do you want to check the wikipedia page?
+            <br>
+            <input type="text" name="text" id="myInput2">
+        </p>
+        <input type="button" value="Open wiki" onclick="watch(this)">
+    </div>
+    <br>
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <div id="myDiv">
+        <img src="images/BeFunky-collage.png" id="myimg" draggable="true" ondragstart="drag(event)">
+    </div>
+
+    <footer>
+        <p id="info" onclick="changeInfo(this)">Made by: Andrei Lungu</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
+<!--addEventListener("click", myFunction(), true);/*true: the event handler is executed in the capturing phase(the event is first captured by the outermost element(ancestors) and propagated to the inner elements(children).)exterior->interior 
+-->
