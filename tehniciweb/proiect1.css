@@ -1,0 +1,256 @@
+@font-face{
+	font-family: myFont; 
+	src: url(valentinevibes.ttf);
+}
+
+body{
+	background-color: black;
+	background-image: url(images/bg.jpeg);	
+	background-repeat:no-repeat; 
+	background-attachment: fixed;
+	background-size:cover;
+	background-position:center;
+}
+#mainimg{
+	width : 50%;
+	height : auto;
+}
+h1 {
+	text-align: center;
+	font-family: 'valentine vibes';
+}
+span{
+	/*background: blue;*/
+	font-family: "Comic Sans MS";
+	background: linear-gradient(navy, gold);
+	/*	background: linear-gradient(to right, indigo, darkviolet, navy, midnightblue, slateblue);*/
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+#synopsis{
+	font-family: "Comic Sans MS", Arial;
+	font-size: large;
+	color: #49fb35;
+	float: left;
+}
+#tabel{
+	font-family: myFont;
+	font-size: large;
+	color: #E17878;
+	background-color: black;
+}
+#titlusite{
+	font-family: myFont, Arial;
+	color: whitesmoke;
+	font-style: oblique;
+	font-weight: bold;
+}
+#watch{
+	color: #E17878;
+	font-family: "Comic Sans MS";
+	font-size: large;
+	text-decoration:  underline;
+	background: linear-gradient(navy, gold);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+table, tr, td, caption{
+	border-style: groove;
+	border-color: coral;
+	border-width: 4px;
+	border-collapse: collapse;
+}
+tr:nth-child(2n+1){
+	background-color: #EAC8A4;
+	color: blue;
+	font-family: "Comic Sans MS";
+}
+tr:nth-child(2n){
+	background-color: #BCB8B9;
+	color: black;
+	font-family: "Comic Sans MS";
+}
+tr:hover{
+	background-color: pink;
+	color: magenta;
+}
+p{
+	color: #00ADDA;
+	margin: auto;
+	font-family: "Comic Sans MS", Arial;
+	background: linear-gradient(to right, #F0FFFF, #F5F5DC, #FFE4C4, #FFEBCD);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+h2,h3,h4,h5{
+	margin: auto;
+	font-family: myFont;
+	background: linear-gradient(to right, #F0FFFF, #F5F5DC, #FFE4C4, #FFEBCD);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+h3 li{
+	font-size: large;
+}
+.Introduction h2 {
+	text-align: left;
+}
+.paragraf1>article{
+	font-family: "Comic Sans MS", Arial;
+	font-size: medium;
+	color: #00ADDA;  
+}
+.main_cast{
+	font-family: "Comic Sans MS", Arial;
+	font-size: large;
+	color: purple; 
+	text-align: justify;
+	background: linear-gradient(to right, #F0FFFF, #F5F5DC, #FFE4C4, #FFEBCD);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.cast>ul>li>p{
+	/*background: linear-gradient(to right, #FFF0CE, #FFD28C);*/
+	text-align: justify;
+	color: red;
+	background: linear-gradient(to right, #F0FFFF, #F5F5DC, #FFE4C4, #FFEBCD);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.limeniu{
+	background: linear-gradient(to left, #FFF0CE, #FFD28C);
+	text-shadow: 2px 2px whitesmoke;
+}
+li.limeniu{
+	border: 5px dotted blue;
+}
+.ulmeniu{
+	visibility: hidden;
+}
+li:hover>.ulmeniu{
+	visibility: visible;
+	/*border: 5px dotted blue;*/
+	list-style-type: square;
+}
+#meniu>ul>li{
+	background: linear-gradient(to right, #FFF0CE, #FFD28C);
+	font-family: "Comic Sans MS";	
+	width: 28%;
+	margin: auto;
+	vertical-align: top;
+	display: inline-block;
+}
+.bigpics>figure{
+	border:solid;
+	width:24.4%;
+	margin: auto;
+	display: inline-block;
+	text-align: center;
+	background-color: lightcyan;
+	font-style: italic;
+	color: teal;
+	font-size: medium;
+}
+.smallpics>figure{
+	border: solid;
+	margin: auto;
+	display: inline-block;
+	text-align: center;
+	background-color: lightcyan;
+	font-style: italic;
+	color: teal;
+	font-size: medium;
+	width: 10%;
+}
+.smallpics>figure>img{
+	width: 100%;
+}
+figure>img{    
+	width:100%;    
+}
+#logo h5 {
+	text-align: center;
+}
+#logo>figure{
+	border:solid;
+	margin: auto;
+	width: 20%;
+	float: center; 
+	/*display: inline-block;*/
+	text-align: center;
+	font-style: italic;
+	color: teal;
+	font-size: medium;
+}
+#logo>figure>img{
+	float : left; 
+}
+.trailer article{
+	display: inline-block;
+}
+.trailer article>h3{
+	text-align: center;
+}
+
+.ost>figure{
+	display: inline-block;
+	width: 20%;
+	height:50px;
+	top: 40px;
+	margin: auto;
+	text-align: center;
+	box-sizing: border-box;
+	box-shadow: 0 0 21px 0px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background: linear-gradient(to right, #F0FFFF, #F5F5DC, #FFE4C4, #FFEBCD);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: 'comic sans ms';
+}
+.ost>figure>audio{
+	background-color: #95B9C7;
+}
+aside {
+	float: right;
+	padding: 40px;
+}
+.container {
+	border:solid;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+iframe {
+	width: 535px;
+	height: 300px;
+}
+#myBtn {
+	display: none; /* Hidden by default */
+	position: sticky; /* Fixed/sticky position */
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 30px; /* Place the button 30px from the right */
+	z-index: 99; /* Make sure it does not overlap */
+	border: none; /* Remove borders */
+	outline: none; /* Remove outline */
+	background-color: navy; /* Set a background color */
+	color: gold; /* Text color */
+	cursor: pointer; /* Add a mouse pointer on hover */
+	padding: 15px; /* Some padding */
+	border-radius: 10px; /* Rounded corners */
+	font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+	background-color: cyan; /* Add a dark-grey background on hover */
+}
+/*background: linear-gradient(to right, indigo, darkviolet, navy, midnightblue, slateblue);*/
+
+@media screen and (max-width: 500px) {
+	p, span, li, ul, nav {
+		display: inline-block;
+		flex-direction: column;
+	}
+	/*flex-direction: column;*/
+}
