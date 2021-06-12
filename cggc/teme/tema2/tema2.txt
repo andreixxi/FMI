@@ -1,0 +1,12 @@
+Rezolvati punctele de mai jos.
+
+(i) Desenati un dreptunghi D si doua poligoane P1 - convex si 
+P2 - concav situate in dreptunghiul [0,800]x[0,1000] (3p). facut
+(ii) Fundalul este un gradient (1p). facut
+(iii) Desenati atat P1 si P2, cat si figura obtinuta aplicand o ROTATIE cu 
+centrul "intre" P1 si P2 (2p). facut?
+(iv) Asupra dreptunghiului D aplicati o SCALARE avand axe oarecare; 
+desenati atat D cat si dreptunghiul rezultat aplicand transformarea (2p). 
+(v) Realizati una dintre transformari inmultind matricele in shader, 
+cealalta inmultind matrice in programul principal. (2p)
+

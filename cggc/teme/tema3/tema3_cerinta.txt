@@ -1,0 +1,1 @@
+DEPASIRE: Simulati o "depasire": un dreptunghi se deplaseaza uniform (prin translatie), un alt dreptunghi vine din spate (tot prin translatii), la un moment dat intra in depasire, apoi trece in fata primului.
