@@ -1,0 +1,22 @@
+readOne :: IO (Integer, String)
+readOne = do 
+    age  <- readLn :: IO Integer
+    name <- readLn :: IO String
+    return (age, name)
+readAll :: Integer -> IO [(Integer, String)]
+readAll n 
+    | n <= 0 = return []
+    | otherwise = do 
+        pair <- readOne
+        list <- readAll (n-1) 
+        return (pair : list)
+ex1 :: IO ()
+ex1 = do
+    putStrLn "N = "
+    n <- readLn :: IO Integer
+    if n <= 0 then putStrLn "Numarul N este prea mic"
+    else 
+        do
+            putStrLn "Numarul N este bun"
+            list <- readAll n
+            print list
