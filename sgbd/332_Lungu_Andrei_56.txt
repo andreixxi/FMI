@@ -1,0 +1,65 @@
+select * from subiecte;
+--1 Enuntati o cerere in limbaj natural, pe schema de examen, care sa implice in rezolvare utilizarea unui cursor ce extrage informatiile din cel putin 3 tabele. 
+--Scrieti un subprogram care utilizeaza acest cursor. Vor fi afisate informatiile din cel putin doua coloane returnate de cursor. Tratati erorile care pot sa apara la apelare. Testati.
+select * from student;
+select * from curs;
+select * from note;
+select * from profesor;
+-- pentru un cod_curs(31-39) dat de la tastatura sa se afiseze notele stundetilor inscrisi la acel curs, titlul profesorului care tine cursul si denumirea cursrului
+select nota, titlu, denumire
+from note n, profesor p, curs c
+where c.cod_curs = &input
+and n.cod_curs = c.cod_curs
+and c.cod_profesor = p.cod_profesor;
+
+--select * from note
+--where cod_curs = 32;
+--select * from profesor p, curs c, note 
+--where cod_curs = 32 and p.cod_profesor = c.cod_profesor;
+
+
+-- pentru un cod_curs dat de la tastatura sa se afiseze notele stundetilor inscrisi la acel curs, titlul profesorului care tine cursul si denumirea cursrului
+create or replace
+procedure ex1 
+is
+--v_titlu profesor.titlu%type;
+--v_denumire curs.denumire%type;
+--v_nota note.nota%type;
+cursor c is
+                select nota, titlu, denumire
+                from note n, profesor p, curs c
+                where c.cod_curs = &input
+                and n.cod_curs = c.cod_curs
+                and c.cod_profesor = p.cod_profesor;
+ok number := 0;
+begin
+    for i in c loop
+         ok :=  ok + 1;
+         if ok = 1 then
+             dbms_output.put_line('titlu profesor: ' ||i.titlu || ', denumire curs: ' || i.denumire );
+             dbms_output.put_line('nota student: ' || i.nota);
+        else
+             dbms_output.put_line('nota student: ' || i.nota);
+        end if;
+        
+    end loop;
+    if ok = 0 then 
+        dbms_output.put_line('a aparut o eroare(nu exista date pt codul dat)');
+    end if;
+ 
+--    open c;
+--    fetch c into v_titlu, v_nota, v_denumire;
+--    dbms_output.put_line('titlu profesor ' ||v_titlu || ', denumire curs ' || v_denumire );
+--    dbms_output.put_line('notele studentilor la acest curs sunt: ' );
+--    loop
+--        fetch c into v_titlu, v_nota, v_denumire;
+--        exit when c%notfound;
+--        dbms_output.put_line('nota ' || v_nota);
+--    end loop;
+--    close c;
+end ex1;
+/
+begin
+    ex1;
+end;
+/

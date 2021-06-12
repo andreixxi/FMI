@@ -1,0 +1,66 @@
+-- Trigger care implementeaza constrangerea foreign key pentru tabelul STATIE: nu este permisa aparitia unui cod de companie inexistenta.
+
+create or replace trigger trig_fk
+before insert or update of cod_companie on statie
+for each row
+declare
+    type t_ids is table of companie.cod%type;
+    v_ids t_ids;
+begin
+    select cod bulk collect into v_ids
+    from companie;
+    if :new.cod_companie not member of v_ids then
+        raise_application_error(-20002,'Constrangerea de integritate FK este incalcata! Compania cu codul ' || :new.cod_companie || ' nu exista!');
+    end if;
+end trig_fk;
+/
+
+
+
+---- pb 2
+select * from achizitie;
+select cod_st, count(distinct cod_prod) from achizitie
+group by cod_st;
+
+create or replace package pack_comert as
+type t_comert is table of achizitie.cod_st%type;
+v_comert t_comert;
+end;
+/
+
+create or replace trigger trig_comert_b
+before delete or update of cod_st,cod_prod on achizitie
+begin
+    select cod_st bulk collect into pack_comert.v_comert
+    from achizitie
+    group by cod_st
+    having count(distinct cod_prod) < 3;
+end trig_comert_b;
+/
+
+create or replace trigger trig_comert_a
+after delete or update of cod_st,cod_prod on achizitie
+begin
+    for v_row in (select cod_st, count(distinct cod_prod) nr
+                  from achizitie
+                  group by cod_st) loop
+        if ((v_row.nr < 3) and (v_row.cod_st not member of pack_comert.v_comert)) then
+            raise_application_error(-20003,'Statia ' || v_row.cod_st || ' trebuie sa comercializeze cel putin 3 produse!');
+        end if;
+    end loop;
+end trig_comert_a;
+/
+
+select * from achizitie where cod_st = 75;
+delete from achizitie
+where cod_st = 105 and cod_prod = 50;
+
+
+
+
+
+
+
+- in pachet ar fi trebuit retinut si numarul de produse distincte comercializate de fiecare statie, astfel incat sa nu mai selectezi in al doilea trigger ca i super ineficient;
+- delete si update se trateaza separat. delete e ca insert, se pune in trigger before care sa fie de asemenea for each row. update e bine pus in triggerul after (adica al doile trigger din program ramane doar pentru update, iar delete fie se integreaza in primul trigger din program, fie faci alt trigger pt el, dar sa fie after & for each row);
+- nu i a placut pe deplin rationamentul programului fiindca, desi triggerul nu trebuie activat pentru statii care comercializeaza din stadiu incipient mai putin de 3 produse (aceste statii fiind ignorate), totusi este nevoie ca la incercarea de stergere a unei achizitii de la o statie care deja comercializeaza sub 3 produse (de ex 2 produse -> deci prin stergerea achizitiei, statia va ajunge sa comercializeze un singur produs), triggerul sa se activeze si sa impiedice stergerea.

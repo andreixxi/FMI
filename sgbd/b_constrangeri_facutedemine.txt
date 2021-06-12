@@ -1,0 +1,64 @@
+select * from employees;
+
+create table emp_test as select * from employees;
+
+select * from emp_test;
+
+insert into emp_test
+values (null, 'f', 'l', 'email', '0236412101', sysdate, 'unjob', 1000, null, 205, 110); -- acum pot insera un angajat cu emp_id null
+
+create or replace trigger trigg_null
+before insert or update of employee_id 
+on emp_test
+for each row 
+begin
+    if :new.employee_id is null then 
+        RAISE_APPLICATION_ERROR(-20001, 'constrangerea de integritate not null este incalcata, nu se poate insera angajat fara id');
+    end if;
+end trigg_null;
+/
+
+insert into emp_test
+values (null, 'f', 'l', 'email', null, sysdate, 'unjob', 1000, null, 205, 110); -- acum nu mai pot insera un angajat cu emp_id null
+
+---------
+
+insert into emp_test
+values (206, 'f', 'l', 'email', null, sysdate, 'unjob', 1000, null, 205, 110); -- pot insera duplicat la emp_id
+
+create or replace trigger trigg_unqiue
+before insert or update of employee_id 
+on emp_test
+for each row 
+declare
+    type id is table of emp_test.employee_id%type;
+    vector id;
+begin
+    select employee_id
+    bulk collect into vector
+    from emp_test;
+
+    if :new.employee_id member of vector then
+        RAISE_APPLICATION_ERROR(-20001, 'constrangerea de integritate unique este incalcata! exista deja un angajat cu acest id, nu se poate insera angajat cu id-ul ' || :new.employee_id);
+    end if;
+end trigg_unqiue;
+/
+
+insert into emp_test
+values (100, 'f', 'l', 'email', null, sysdate, 'unjob', 1000, null, 205, 110); -- nu mai pot insera duplicat la emp_id
+
+-- 
+create or replace trigger trigg_check
+before insert or update of first_name 
+on emp_test
+for each row 
+begin
+    if length(:new.first_name) < 10 then
+        RAISE_APPLICATION_ERROR(-20001, 'constrangerea de integritate check este incalcata! nu pot insera un nume cu ' || length(:new.first_name) || ' caracterere. trebuie minim 10');
+    end if;
+end trigg_check;
+/
+insert into emp_test
+values (400, 'f', 'l', 'email', null, sysdate, 'unjob', 1000, null, 205, 110); -- nu mai pot insera prenume mai scurt de 10 caractere
+insert into emp_test
+values (400, 'florentinamare', 'l', 'email', null, sysdate, 'unjob', 1000, null, 205, 110); -- merge

@@ -1,0 +1,2 @@
+testeaza daca poti face un insert cu null (not null) sau sa se repete (unique)
+daca DA,  simulezi trigger de constragere integritate astfel incat sa nu poti face chestia de sus
