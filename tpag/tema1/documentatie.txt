@@ -1,0 +1,37 @@
+ex 1
+
+Am folosit inkscape, animatia cercului si a fontului a fost facuta in browser/ din cod.
+10 elemente svg:
+-1 pattern
+-2 gradient (fundal)
+-3 path
+-4 ellipse
+-5 filter
+-6 animate (font)
+-7 blur
+-8 <g> (a container used to group other SVG elements.)
+-9 animateMotion (pt cerculet)
+-10 mpath
+
+-------------------
+
+ex 2
+
+Am desenat witch of agnesi. Am facut un script in python pentru a calcula coordonatele carteziene a 400 de puncte de pe curba. Apoi, pentru a le transforma in coordonate pe ecran am urmat pasii din urmatorul link: http://edspi31415.blogspot.com/2012/09/cartesian-coordinates-to-pixel-screen.html . Transformarea a fost facuta in acelasi script. 
+
+Pentru a le desena in html am folosit acelasi script. 
+Pentru puncte:
+<circle cx="0.0" cy="700.0" r="1" fill="red"/>
+am ales sa le reprezint printr un cerc de raza 1, colorat cu rosu, indicand coordonatele ecranului de pe axele x si y ; 
+
+Pentru curba:
+<path d="Mp1x p1y p2x p2y" stroke-width="0.5" stroke="blue"/>
+am creat un path care uneste punctele p1 p2 (de la p1 la p2) cu o grosime de 0.5 si culoare albastra. 
+
+------------------
+
+ex 3 
+
+Am desenat o vaza, calculele sunt in poza din arhiva. Am folosit scriptul 2 pentru desenare svg (similar cu ex precedent, diferenta a fost la curba, unde am folosit: 
+<path d="Mp1x p1y Cp2x p2y, p3x p3y, p4x p4y" stroke-width="1" stroke="{}" fill="transparent"/> 
+M primul punct al poligonului de control C celelalte 3 puncte ale poligonului)
